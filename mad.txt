@@ -1,0 +1,134 @@
+Enable desktop notifications for Gmail.
+   OK  No thanks
+Conversations
+2.19 GB of 15 GB used
+Terms · Privacy · Program Policies
+Last account activity: 1 minute ago
+Open in 1 other location · Details
+package com.example.implicitintentsdemo1;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.ContactsContract;
+import android.view.View; 
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    Button b1, b2, b3, b4;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        b1 = (Button) findViewById(R.id.btn_webbrowser);
+        b1.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View arg0){
+                Intent i = new
+                        Intent(android.content.Intent.ACTION_VIEW,Uri.parse("http://www.amazon.com"));
+                startActivity(i);
+            }
+        });
+        //---Make calls button---
+        b2 = (Button) findViewById(R.id.btn_makecalls);
+        b2.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View arg0){
+                Intent i = new
+                        Intent(android.content.Intent.ACTION_DIAL,Uri.parse("tel:+651234567"));
+                startActivity(i);
+            }
+        });
+        //---Show Map button---
+        b3 = (Button) findViewById(R.id.btn_showMap);
+        b3.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View arg0){
+                Intent i = new
+                        Intent(android.content.Intent.ACTION_VIEW,Uri.parse("geo:15.890772,80.441692"));
+                startActivity(i);
+            }
+        });
+        //---Choose Contact button---
+        b4 = (Button) findViewById(R.id.btn_chooseContact);
+        b4.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View arg0){
+                Intent i = new
+                        Intent(android.content.Intent.ACTION_PICK);i.setType(ContactsContract.Contacts.CONTENT_TYPE);
+                //startActivityForResult(i,request_Code);
+                startActivity(i);
+            }
+        });
+
+    }
+}
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/btn_webbrowser"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_browser" />
+    <Button
+        android:id="@+id/btn_makecalls"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_calls" />
+    <Button
+        android:id="@+id/btn_showMap"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_map" />
+    <Button
+        android:id="@+id/btn_chooseContact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_contacts" />
+
+
+</LinearLayout>
+
+
+
+
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">20dp</dimen>
+    <dimen name="activity_horizontal_margin">20dp</dimen>
+</resources>
+<resources>
+    <string name="app_name">ImplicitIntents</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="str_browser">Show Browser</string>
+    <string name="str_calls">Show Dialer</string>
+    <string name="str_map">Show Google Maps</string>
+    <string name="str_contacts">Show Contacts</string>
+</resources>
